@@ -29,20 +29,17 @@ var getRepoIssues = function(repo) {
     if (response.ok) {
       response.json().then(function(data) {
         displayIssues(data);
-
+  
         // check if api has paginated issues
         if (response.headers.get("Link")) {
           displayWarning(repo);
         }
       });
-    }
-    else {
+    } else {
       // if not successful, redirect to homepage
       document.location.replace("./index.html");
     }
   });
-  
-};
 
 var displayIssues = function(issues) {
   if (issues.length === 0) {
